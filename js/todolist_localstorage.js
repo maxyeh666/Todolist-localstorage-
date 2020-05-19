@@ -8,8 +8,9 @@ let DeleteTodo = document.querySelector('#delete')
 
 
 function Listing(){
-    if(!localStorage.Notes || localStorage.Notes == '[]'){
+    if(localStorage.Notes == '[]'){
         note.innerHTML = '<div class="note-items">還沒有輸入代辦事項喔!</div>'
+        localStorage.setItem('Notes','[]')
     }else{
         let localData = localStorage.Notes
         let list = JSON.parse(localData)
@@ -19,9 +20,9 @@ function Listing(){
         //顯示取得的資料，且判斷完成與未完成要顯示的圖案
         for(let i = 0;i < list.length; i++){   
             if(list[i].status === 'done'){
-                note.innerHTML = note.innerHTML + '<div class="note-items row"><label class="todo-items col-2"><input class="checkerbox-swicher check-items" name=items'+ i + ' type="checkbox" value="0"><span class="checker"><i class="far fa-circle"></i></span></label><span class="todo-items col-6 todo-content">'  + list[i].todo + '</span><span class="todo-items col-2"><i class="fas fa-check"></i></span><span class="todo-items col-2">' + list[i].time +'</span></div>'
+                note.innerHTML = note.innerHTML + '<div class="note-items row col-md-12"><label class="todo-items"><input class="checkerbox-swicher check-items" name=items'+ list[i].id + ' type="checkbox" value="0"></label><sapn class="todo-items col-md-8 todo-content">'  + list[i].todo + '</sapn><sapn class="todo-items col-md-2"><i class="fas fa-check"></i></sapn><sapn class="todo-items col-md-2">' + list[i].time +'</sapn></div>'
             }else{
-                note.innerHTML = note.innerHTML + '<div class="note-items row"><label class="todo-items col-2"><input class="checkerbox-swicher check-items" name=items'+ i + ' type="checkbox" value="0"><span class="checker"><i class="far fa-circle"></i></span></label><span class="todo-items col-6 todo-content">'  + list[i].todo + '</span><span class="todo-items col-2"><i class="fas fa-times"></i></span><span class="todo-items col-2">' + list[i].time +'</span></div>'
+                note.innerHTML = note.innerHTML + '<div class="note-items row col-md-12"><label class="todo-items"><input class="checkerbox-swicher check-items" name=items'+ list[i].id + ' type="checkbox" value="0"></label><sapn class="todo-items col-md-8 todo-content">'  + list[i].todo + '</sapn><sapn class="todo-items col-md-2"><i class="fas fa-times"></i></sapn><sapn class="todo-items col-md-2">' + list[i].time +'</sapn></div>'
             }
         }
         //代辦事項完成時加上刪除線
@@ -44,11 +45,11 @@ function Listing(){
         for(let i = 0;i < noteItems.length;i++){
             noteItems[i].addEventListener('click',function(){
                 if(switcher[i].value == 0){
-                    checker[i].innerHTML = '<i class="fas fa-check-circle"></i>'
+                    noteItems[i].classList.add('selected')
                     switcher[i].checked = true
                     switcher[i].value = 1
                 }else if(switcher[i].value == 1){
-                    checker[i].innerHTML = '<i class="far fa-circle">'
+                    noteItems[i].classList.remove('selected')
                     switcher[i].checked = false
                     switcher[i].value = 0
                 }
