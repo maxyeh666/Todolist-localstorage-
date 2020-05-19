@@ -8,7 +8,7 @@ let DeleteTodo = document.querySelector('#delete')
 
 
 function Listing(){
-    if(localStorage.Notes == '[]'){
+    if(!localStorage.Notes || localStorage.Notes == '[]'){
         note.innerHTML = '<div class="note-items">還沒有輸入代辦事項喔!</div>'
         localStorage.setItem('Notes','[]')
     }else{
