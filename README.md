@@ -14,4 +14,4 @@ javascript練習，使用localstorage進行C(create)R(read)U(update)D(delete)的
 本程式裡key=Notes
 
 localstorage存入的資料為字串型態  
-這裡使用JSON.parse()跟JSON.stringify()來將todo是向來進行轉換以便寫入
+這裡使用JSON.parse()跟JSON.stringify()來將todo是來進行轉換以便寫入
